@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kristina — UGC Portfolio</title>
+<meta name="description" content="Kristina — Beauty, Skincare & Lifestyle UGC Creator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5eee3;
+  --paper:#fbf8f3;
+  --dark:#241a13;
+  --text:#2a2019;
+  --muted:#766859;
+  --accent:#8a6035;
+  --line:#dfd3c2;
+  --radius:24px;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Jost,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(var(--max),calc(100% - 44px));margin:auto}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+.script{font-family:"Alex Brush",cursive}
+.eyebrow{
+  color:var(--accent);
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  z-index:50;
+  top:0;left:0;right:0;
+  padding:22px 0;
+  transition:.3s;
+}
+.nav.scrolled{
+  background:rgba(251,248,243,.96);
+  box-shadow:0 1px 0 var(--line);
+  padding:14px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font:2rem "Alex Brush",cursive}
+.nav-links{display:flex;gap:34px}
+.nav-links a{
+  font-size:.76rem;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+}
+.menu-btn{display:none;border:0;background:none;cursor:pointer}
+
+/* HERO */
+.hero{padding:130px 0 90px}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(280px,.9fr) 1.1fr;
+  gap:75px;
+  align-items:center;
+}
+.hero-photo{
+  aspect-ratio:3/4;
+  border-radius:28px;
+  overflow:hidden;
+  background:#d8c2aa;
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero h1{
+  font-size:clamp(4.5rem,9vw,7.5rem);
+  font-weight:400;
+  line-height:.85;
+  margin:15px 0 8px;
+}
+.hero-sub{
+  font-size:clamp(1rem,2vw,1.35rem);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+}
+.hero-location{color:var(--muted);margin:18px 0 30px}
+.buttons{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:13px 19px;
+  border-radius:999px;
+  background:var(--dark);
+  color:#f8f0e5;
+  border:1px solid var(--dark);
+  font-size:.8rem;
+}
+.btn.light{background:transparent;color:var(--text);border-color:var(--line)}
+.status{margin-top:24px;color:var(--muted);font-size:.82rem}
+.status-dot{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:#5d8b5d;margin-right:7px;
+}
+
+/* SECTIONS */
+.section{padding:105px 0}
+.section-title{text-align:center;margin-bottom:55px}
+.section-title h2{font-size:clamp(3rem,6vw,4.5rem);font-weight:400;margin:8px 0}
+
+/* ABOUT */
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr .8fr;
+  gap:75px;
+  align-items:center;
+}
+.about h2{font-size:clamp(3.2rem,6vw,5rem);font-weight:400;margin:8px 0 20px}
+.about-lead{font-size:1.25rem;line-height:1.7;max-width:600px}
+.about-video{
+  aspect-ratio:3/4;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:#b18a72;
+}
+.about-video video{width:100%;height:100%;object-fit:cover}
+.stats{display:flex;gap:42px;margin:32px 0}
+.stat strong{
+  display:block;
+  font:2.1rem "Cormorant Garamond",serif;
+  color:var(--accent)
+}
+.stat span{font-size:.75rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{border:1px solid var(--line);padding:8px 13px;border-radius:99px;font-size:.75rem;color:var(--muted)}
+
+/* PARTNERS */
+.partners{background:#ded5e8}
+.brand-list{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:900px;margin:auto}
+.brand{
+  background:var(--paper);
+  border:1px solid rgba(42,32,25,.07);
+  border-radius:99px;
+  padding:14px 22px;
+  font:1rem "Cormorant Garamond",serif;
+}
+
+/* PORTFOLIO */
+.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-bottom:35px}
+.filter{
+  cursor:pointer;
+  padding:10px 17px;
+  border:1px solid var(--line);
+  border-radius:99px;
+  background:transparent;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.7rem;
+}
+.filter.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.portfolio{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+}
+.card{min-width:0}
+.video-box{
+  position:relative;
+  aspect-ratio:9/16;
+  overflow:hidden;
+  border-radius:18px;
+  background:linear-gradient(145deg,#e4d2b8,#b8916b);
+  cursor:pointer;
+}
+.video-box video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.poster{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.play{
+  position:absolute;
+  z-index:3;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  width:58px;height:58px;
+  border:0;
+  border-radius:50%;
+  background:rgba(251,248,243,.9);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.play svg{width:19px;margin-left:3px}
+.video-box.playing .play{display:none}
+.card-info{padding:12px 3px}
+.card-info h3{
+  margin:0 0 3px;
+  font:600 1.18rem "Cormorant Garamond",serif
+}
+.card-info span{
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted)
+}
+.card.hidden{display:none}
+
+/* PHOTOS */
+.dark-section{background:var(--dark);color:#f5eee3}
+.dark-section .eyebrow{color:#c9a46a}
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.photo{
+  aspect-ratio:1;
+  overflow:hidden;
+  border-radius:15px;
+  cursor:pointer;
+  background:#8f7765;
+}
+.photo.tall{grid-row:span 2;aspect-ratio:auto}
+.photo img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.photo:hover img{transform:scale(1.04)}
+
+/* CONTACT */
+.contact{background:var(--paper)}
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.contact-copy{padding:70px}
+.contact-copy h2{font-size:clamp(2.2rem,4vw,3.3rem);font-weight:400;line-height:1.2}
+.contact-links{margin-top:35px;display:grid;gap:15px}
+.contact-photo{min-height:430px;background:#c29d80}
+.contact-photo img{width:100%;height:100%;object-fit:cover}
+
+/* FOOTER */
+footer{background:var(--dark);color:#b9a88f;padding:35px 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-logo{font:1.8rem "Alex Brush",cursive;color:#f5eee3}
+
+/* MOBILE */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .hero{padding-top:105px}
+  .hero-photo{max-width:520px;margin:auto}
+  .about-video{order:-1;aspect-ratio:16/10}
+  .portfolio{grid-template-columns:repeat(2,1fr)}
+  .photo-grid{grid-template-columns:repeat(2,1fr)}
+  .photo.tall{grid-row:auto;aspect-ratio:1}
+  .contact-copy{padding:55px 30px}
+  .contact-photo{min-height:300px}
+}
+@media(max-width:560px){
+  .container{width:min(var(--max),calc(100% - 30px))}
+  .hero h1{font-size:4.4rem}
+  .portfolio{grid-template-columns:1fr 1fr;gap:12px}
+  .stats{gap:20px}
+  .stat strong{font-size:1.7rem}
+  .buttons{flex-direction:column;align-items:stretch}
+  .btn{width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">Kristina</a>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#videography">Videography</a>
+      <a href="#photography">Photography</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-photo">
+      <img src="image/my photo.jpg" alt="Kristina">
+    </div>
+
+    <div>
+      <div class="eyebrow">Beauty · Skincare · Lifestyle</div>
+      <h1 class="script">Kristina</h1>
+      <div class="hero-sub">UGC Portfolio</div>
+      <p class="hero-location">Florida, USA · Content Creator for Brands</p>
+
+      <div class="buttons">
+        <a class="btn" href="mailto:kristina.avchiyants@gmail.com">✉ Contact Me</a>
+        <a class="btn light" href="https://instagram.com/krisugc_beauty" target="_blank" rel="noopener">◎ @krisugc_beauty</a>
+      </div>
+
+      <div class="status"><span class="status-dot"></span>Currently booking new brand partnerships</div>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="eyebrow">About Me</div>
+      <h2 class="script">Hi, brands!</h2>
+      <p class="about-lead serif">
+       I create natural, engaging UGC that makes products feel easy to discover, trust, and love. From beauty and skincare to lifestyle and kids care, I focus on authentic storytelling, clean visuals, and content that feels real - not overly staged.
+      </p>
+
+      <p class="about-lead serif">
+       What I bring to every collaboration
+
+Authentic
+Natural, relatable content that feels like a real recommendation.
+
+Visual
+Clean, aesthetic videos and photos designed to catch attention.
+
+Brand-focused
+Content created with your product, audience, and goals in mind.
+      </p>
+
+
+      <div class="tags">
+        <span class="tag">Warm, natural light</span>
+        <span class="tag">Buttery neutrals</span>
+        <span class="tag">Real routines</span>
+        <span class="tag">Editorial detail</span>
+      </div>
+    </div>
+
+    <div class="about-video">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="video/ValentinoBorninRomaStravaganza.MP4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section partners">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Selected Partnerships</div>
+      <h2 class="script">Brands I've worked with</h2>
+    </div>
+
+    <div class="brand-list">
+      <p class="about-lead serif">
+       Be One of My First Brand Collaborations
+
+I’m building a portfolio of authentic, scroll-stopping content and looking for brands I genuinely love to create with.
+
+Your product could be the next story I tell.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="videography">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Selected Works</div>
+      <h2 class="script">Videography</h2>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="fragrance">Fragrance</button>
+      <button class="filter" data-filter="beauty">Beauty</button>
+      <button class="filter" data-filter="haircare">Hair Care</button>
+      <button class="filter" data-filter="lifestyle">Lifestyle</button>
+    </div>
+
+    <div class="portfolio">
+
+      <article class="card" data-category="fragrance">
+        <div class="video-box" data-video="video/cassiopea.mp4" data-poster="image/cassiopea image.JPEG">
+          <img class="poster" src="image/cassiopea image.JPEG" alt="Cassiopea fragrance">
+          <button class="play" aria-label="Play Cassiopea video">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="card-info"><h3>Cassiopea by Tiziana Terenzi</h3><span>Fragrance</span></div>
+      </article>
+
+      <article class="card" data-category="fragrance">
+        <div class="video-box" data-video="video/AquaDiGioVideo.mp4" data-poster="image/AquaDiGio Image.JPEG">
+         <img class="poster" src="image/AquaDiGio Image.JPEG" alt="Cassiopea fragrancedd">
+          <button class="play" aria-label="Play beauty video">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="card-info"><h3>Acqua Di Gio by Giorgio Armani</h3><span>Fragrance</span></div>
+      </article>
+
+      <article class="card" data-category="fragrance">
+        <div class="video-box" data-video="video/ValentinoBorninRomaStravaganza.mp4" data-poster="image/ValentinoBorninRomaStravaganza.png">
+          <img class="poster" src="image/ValentinoBorninRomaStravaganza.png" alt="Cassiopea fragrancedd">
+          <button class="play" aria-label="Video placeholder">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="card-info"><h3>Valentino Born in Roma</h3><span>Fragrance</span></div>
+      </article>
+
+      <article class="card" data-category="lifestyle">
+        <div class="video-box" data-video="video/Skincare2.mp4" data-poster="image/Biodance Mask.png">
+          <img class="poster" src="image/Biodance Mask.png" alt="Cassiopea fragrancedd">	
+          <button class="play" aria-label="Video placeholder">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="card-info"><h3>Morning Routine</h3><span>Lifestyle</span></div>
+      </article>
+
+      <article class="card" data-category="beauty">
+        <div class="video-box" data-video="video/Skincare1.mp4" data-poster="image/Skin001Centella.png">
+          <img class="poster" src="image/Skin001Centella.png" alt="Cassiopea fragrancedd">
+          <button class="play" aria-label="Video placeholder">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>	
+        <div class="card-info"><h3>Product Review</h3><span>Beauty</span></div>
+      </article>
+
+      <article class="card" data-category="KidsCare">
+        <div class="video-box" data-video="video/kids skincare.mp4" data-poster="image/EveredenImage.JPEG">
+          <img class="poster" src="image/EveredenImage.JPEG" alt="Cassiopea fragrancedd">
+          <button class="play" aria-label="Video placeholder">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="card-info"><h3>Kids Self-Care Routine</h3><span>Kids Care</span></div>
+      </article>
+
+      <article class="card" data-category="beauty">
+        <div class="video-box" data-video="video/Skincare3.mp4" data-poster="image/Skincare3.png">
+          <img class="poster" src="image/Skincare3.png" alt="Cassiopea fragrancedd">
+          <button class="play" aria-label="Video placeholder">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="card-info"><h3>Skin Care</h3><span>Beauty</span></div>
+      </article>
+
+      <article class="card" data-category="haircare">
+        <div class="video-box" data-video="video/HairCare.mp4" data-poster="image/HairCareImage.png">
+          <img class="poster" src="image/HairCareImage.png" alt="Cassiopea fragrancedd">
+          <button class="play" aria-label="Video placeholder">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="card-info"><h3>Hair Care</h3><span>Hair Care</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section dark-section" id="photography">
+  <div class="container">
+    <div class="section-title">
+      <div class="eyebrow">Stills</div>
+      <h2 class="script">Photography</h2>
+    </div>
+
+    <div class="photo-grid">
+      <div class="photo tall"><img src="image/AquaDiGioPhoto1.JPEG" alt="Beauty photography"></div>
+      <div class="photo"><img src="image/Cassiopea Image.jpeg" alt="Kristina"></div>
+      <div class="photo"><img src="image/ValentinoBorninRomaStravaganza.png" alt="Product detail"></div>
+      <div class="photo"><img src="image/Skin001Centella.png" alt="Lifestyle"></div>
+      <div class="photo"><img src="image/Atache.png" alt="Beauty detail"></div>
+      <div class="photo"><img src="image/AquaDiGio Image.jpeg" alt="Lifestyle portrait"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <div class="eyebrow">Get In Touch</div>
+      <h2 class="serif">Let's make content people actually stop scrolling for.</h2>
+      <div class="contact-links">
+        <a href="mailto:kristina.avchiyants@gmail.com">✉ &nbsp; kristina.avchiyants@gmail.com</a>
+        <a href="https://instagram.com/krisugc_beauty" target="_blank" rel="noopener">◎ &nbsp; @krisugc_beauty</a>
+      </div>
+    </div>
+
+    <div class="contact-photo">
+      <img src="image/Beige Minimalist Mood Photo Collage.png" alt="Kristina">
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span class="footer-logo">Kristina</span>
+    <span>© 2026 Kristina · UGC Creator</span>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 30);
+});
+
+/* VIDEO PLAYER
+   Each video-box can contain data-video="filename.mp4".
+   The video element is created only after clicking Play.
+*/
+document.querySelectorAll(".video-box[data-video]").forEach(box => {
+  const play = box.querySelector(".play");
+
+  play.addEventListener("click", event => {
+    event.stopPropagation();
+
+    if (box.classList.contains("playing")) return;
+
+    const src = box.dataset.video;
+    const poster = box.dataset.poster || "";
+
+    const video = document.createElement("video");
+    video.controls = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.src = src;
+
+    if (poster) video.poster = poster;
+
+    const oldPoster = box.querySelector(".poster");
+    if (oldPoster) oldPoster.remove();
+
+    box.appendChild(video);
+    box.classList.add("playing");
+
+    video.play().catch(() => {
+      video.controls = true;
+    });
+  });
+});
+
+/* FILTERS */
+const filterButtons = document.querySelectorAll(".filter");
+const cards = document.querySelectorAll(".card");
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+
+    const filter = button.dataset.filter;
+
+    cards.forEach(card => {
+      card.classList.toggle(
+        "hidden",
+        filter !== "all" && card.dataset.category !== filter
+      );
+    });
+  });
+});
+
+/* MOBILE MENU */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.querySelector(".nav-links");
+
+menuBtn.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("mobile-open");
+  if (open) {
+    navLinks.style.display = "flex";
+    navLinks.style.position = "absolute";
+    navLinks.style.top = "70px";
+    navLinks.style.left = "15px";
+    navLinks.style.right = "15px";
+    navLinks.style.padding = "25px";
+    navLinks.style.flexDirection = "column";
+    navLinks.style.background = "#fbf8f3";
+    navLinks.style.borderRadius = "18px";
+    navLinks.style.boxShadow = "0 10px 30px rgba(0,0,0,.12)";
+  } else {
+    navLinks.removeAttribute("style");
+  }
+});
+</script>
+
+</body>
+</html>
